@@ -32,7 +32,7 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
     private long clickTime = 0;
     private int clickDely = 300;
 
-    private int tabTopMargin, tabBottomMargin, tabLeftMargin, tabRightMargin;
+    private int tabTopMargin = 1, tabBottomMargin = 1, tabLeftMargin = 1, tabRightMargin = 1;
 
     public ClassifyFilterView(@NonNull Context context) {
         this(context, null);
@@ -45,10 +45,10 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
     public ClassifyFilterView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ClassifyFilterView);
-        tabTopMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabTopMargin, 1);
-        tabBottomMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabBottomMargin, 1);
-        tabLeftMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabLeftMargin, 1);
-        tabRightMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabRightMargin, 1);
+        tabTopMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabTopMargin, tabTopMargin);
+        tabBottomMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabBottomMargin, tabBottomMargin);
+        tabLeftMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabLeftMargin, tabLeftMargin);
+        tabRightMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabRightMargin, tabRightMargin);
         typedArray.recycle();
         init();
     }
