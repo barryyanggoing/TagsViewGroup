@@ -4,12 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -26,9 +28,11 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
 
     private List<Category> list;
 
-    private int startMarginLeft,startMarginTop,selectedIndex;
+    private int startMarginLeft, startMarginTop, selectedIndex;
     private long clickTime = 0;
     private int clickDely = 300;
+
+    private int tabTopMargin, tabBottomMargin, tabLeftMargin, tabRightMargin;
 
     public ClassifyFilterView(@NonNull Context context) {
         this(context, null);
@@ -40,6 +44,12 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
 
     public ClassifyFilterView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ClassifyFilterView);
+        tabTopMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabTopMargin, 1);
+        tabBottomMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabBottomMargin, 1);
+        tabLeftMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabLeftMargin, 1);
+        tabRightMargin = (int) typedArray.getDimension(R.styleable.ClassifyFilterView_tabRightMargin, 1);
+        typedArray.recycle();
         init();
     }
 
@@ -51,12 +61,14 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
     public void setData(List<Category> list) {
         this.list = list;
         tagsViewGroup.removeAllViews();
+        LinearLayout.LayoutParams layoutParams = getTabLayoutParams();
         for (int i = 0; i < list.size(); i++) {
             TextView tagTextView = new TextView(getContext());
             tagTextView.setText(list.get(i).getName());
             tagTextView.setTextAppearance(getContext(), R.style.style_classify_filter_tabs);
             tagTextView.setBackgroundResource(R.drawable.tab_selected);
             tagTextView.setTag(list.get(i).getId());
+            tagTextView.setLayoutParams(layoutParams);
             tagTextView.setOnClickListener(this);
             tagsViewGroup.addView(tagTextView);
         }
@@ -64,6 +76,15 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
         startMarginLeft = tagsViewGroup.getChildAt(0).getLeft();
         startMarginTop = tagsViewGroup.getChildAt(0).getTop();
         tagsViewGroup.getChildAt(0).setSelected(true);
+    }
+
+    private LinearLayout.LayoutParams getTabLayoutParams() {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.topMargin = tabTopMargin;
+        layoutParams.bottomMargin = tabBottomMargin;
+        layoutParams.rightMargin = tabRightMargin;
+        layoutParams.leftMargin = tabLeftMargin;
+        return layoutParams;
     }
 
     /**

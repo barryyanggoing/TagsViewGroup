@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ClassifyFilterView">
+        <attr name="tabTopMargin" format="dimension"/>
+        <attr name="tabBottomMargin" format="dimension"/>
+        <attr name="tabLeftMargin" format="dimension"/>
+        <attr name="tabRightMargin" format="dimension"/>
+    </declare-styleable>
+</resources>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * @desc:
@@ -73,8 +74,8 @@ public class TagsViewGroup extends ViewGroup {
 
         for (int i = 0; i < count; i++) {
             View child = this.getChildAt(i);
-            if (child.getLayoutParams() instanceof android.widget.LinearLayout.LayoutParams) {
-                android.widget.LinearLayout.LayoutParams layoutParams = (android.widget.LinearLayout.LayoutParams) child.getLayoutParams();
+            if (child.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) child.getLayoutParams();
                 topMargin = layoutParams.topMargin;
                 bottomMargin = layoutParams.bottomMargin;
                 leftMargin = layoutParams.leftMargin;
