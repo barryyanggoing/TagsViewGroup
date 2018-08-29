@@ -24,12 +24,18 @@ public class MainActivity extends AppCompatActivity {
         list.add(new Category(6,"美术"));
         list.add(new Category(7,"舞蹈"));
         list.add(new Category(8,"艺术"));
-        list.add(new Category(9,"教育"));
+        list.add(new Category(9,"教育教育"));
         list.add(new Category(10,"儿歌"));
         list.add(new Category(11,"英语"));
         list.add(new Category(12,"语文"));
         list.add(new Category(13,"少儿电影"));
         list.add(new Category(14,"少儿综艺"));
+        list.add(new Category(15,"少儿综艺"));
+        list.add(new Category(16,"少儿综艺"));
+        list.add(new Category(17,"少儿电影"));
+        list.add(new Category(18,"少儿综艺"));
+        list.add(new Category(19,"少儿综艺"));
+        list.add(new Category(20,"少儿综艺"));
         classifyFilterView.setData(list);
     }
 
