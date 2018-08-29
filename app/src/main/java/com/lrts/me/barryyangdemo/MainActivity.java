@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(new Category(18,"少儿综艺"));
         list.add(new Category(19,"少儿综艺"));
         list.add(new Category(20,"少儿综艺"));
+        list.add(new Category(21,"少儿综艺"));
+        list.add(new Category(22,"少儿综艺"));
         classifyFilterView.setData(list);
     }
 

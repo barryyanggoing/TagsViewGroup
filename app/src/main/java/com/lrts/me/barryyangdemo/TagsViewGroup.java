@@ -2,7 +2,6 @@ package com.lrts.me.barryyangdemo;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -107,61 +106,44 @@ public class TagsViewGroup extends ViewGroup {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         int width = getWidth();
         int childCount = getChildCount();
-
         int allChiledWidth = 0;
         int allChiledLeft = 0;
         int allChiledRight = 0;
-
         int measuredWidth = getChildAt(0).getMeasuredWidth();
         int measuredHeight = getChildAt(0).getMeasuredHeight();
-
-        int huhangWidth = measuredWidth;
-
-        int colum = 1;//第二行
+        int allRowWidth = measuredWidth;
         int row = 1;//第二列
-
         for (int i = 0; i < childCount; i++) {
-
             View child = getChildAt(i);
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             int childWidth = child.getMeasuredWidth();
-
             allChiledWidth += childWidth;
             allChiledLeft += lp.leftMargin;
             allChiledRight += lp.rightMargin;
-
-
             if (allChiledWidth + allChiledLeft + allChiledRight > width) {
-//                if (i == 11) {
-//                    child.layout(2 * lp.leftMargin + lp.rightMargin + huhangWidth,
-//                            measuredHeight + 2 * lp.topMargin + lp.bottomMargin,
-//                            2 * lp.leftMargin + lp.rightMargin + huhangWidth + child.getMeasuredWidth(),
-//                            measuredHeight + 2 * lp.topMargin + lp.bottomMargin + child.getMeasuredHeight());
-//                } else if (i == 12) {
-//                    child.layout(3 * lp.leftMargin + 2 * lp.rightMargin + huhangWidth,
-//                            measuredHeight + 3 * lp.topMargin + 2 * lp.bottomMargin,
-//                            3 * lp.leftMargin + 2 * lp.rightMargin + huhangWidth + child.getMeasuredWidth(),
-//                            measuredHeight + 3 * lp.topMargin + 2 * lp.bottomMargin + child.getMeasuredHeight());
-//                }
-//                huhangWidth += child.getMeasuredWidth();
+
+
+                // TODO: 2018/8/29 判断当前i所在第几行
 
 
                 //第二行
                 if (i >= 11 && i <= 19) {
-                    child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth,
+                    child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth,
                             measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin,
-                            (row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth + child.getMeasuredWidth(),
+                            (row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth + child.getMeasuredWidth(),
                             measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin + child.getMeasuredHeight());
                 } else if (i == 20) {//第3行
                     row = 1;
-                    huhangWidth = measuredWidth;
-                    child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth,
+                    allRowWidth = measuredWidth;
+                    child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth,
                             2 * measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin,
-                            (row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth + child.getMeasuredWidth(),
+                            (row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth + child.getMeasuredWidth(),
                             2 * measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin + child.getMeasuredHeight());
                 }
                 row++;
-                huhangWidth += child.getMeasuredWidth();
+                allRowWidth += child.getMeasuredWidth();
+
+
             }
         }
     }
