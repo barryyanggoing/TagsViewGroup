@@ -145,16 +145,20 @@ public class TagsViewGroup extends ViewGroup {
 //                }
 //                huhangWidth += child.getMeasuredWidth();
 
+
+                //第二行
                 if (i >= 11 && i <= 19) {
                     child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth,
                             measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin,
                             (row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth + child.getMeasuredWidth(),
                             measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin + child.getMeasuredHeight());
-                } else {
-//                    child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth,
-//                            measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin,
-//                            (row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth + child.getMeasuredWidth(),
-//                             measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin + child.getMeasuredHeight());
+                } else if (i == 20) {//第3行
+                    row = 1;
+                    huhangWidth = measuredWidth;
+                    child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth,
+                            2 * measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin,
+                            (row + 1) * lp.leftMargin + row * lp.rightMargin + huhangWidth + child.getMeasuredWidth(),
+                            2 * measuredHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin + child.getMeasuredHeight());
                 }
                 row++;
                 huhangWidth += child.getMeasuredWidth();
