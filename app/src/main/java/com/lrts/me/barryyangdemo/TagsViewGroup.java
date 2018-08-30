@@ -2,6 +2,7 @@ package com.lrts.me.barryyangdemo;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
  *
  */
 public class TagsViewGroup extends ViewGroup {
+
+    private static final String TAG = "TagsViewGroup";
 
     public TagsViewGroup(Context context) {
         super(context);
@@ -42,6 +45,7 @@ public class TagsViewGroup extends ViewGroup {
             View child = getChildAt(i);
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             allChiledWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            // TODO: 2018/8/30  为什么没有加上第一个tag
             if (allChiledWidth > widthSize) {
                 allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
                 clomn++;
@@ -62,6 +66,7 @@ public class TagsViewGroup extends ViewGroup {
             View child = getChildAt(i);
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             allChiledWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            // TODO: 2018/8/30  为什么没有加上第一个tag   这里第10个tab的时候才进入到这个判断中，也就是说少加了第10个这个tab的宽度
             if (allChiledWidth > getWidth()) {
                 allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
                 firstRowWidthAll = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
