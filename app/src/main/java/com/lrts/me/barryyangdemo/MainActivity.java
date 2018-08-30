@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
         list.add(new Category(2,"国学"));
         list.add(new Category(3,"手工"));
         list.add(new Category(4,"儿儿歌"));
-        list.add(new Category(5,"数学"));
+        list.add(new Category(5,"数学数学"));
         list.add(new Category(6,"美术"));
         list.add(new Category(7,"舞蹈"));
         list.add(new Category(8,"艺术"));
         list.add(new Category(9,"教教育"));
-        list.add(new Category(10,"儿歌"));
+        list.add(new Category(10,"儿歌三十"));
         list.add(new Category(11,"英语"));
         list.add(new Category(12,"语文"));
         list.add(new Category(13,"少儿电影"));

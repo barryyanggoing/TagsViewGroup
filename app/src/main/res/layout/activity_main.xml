@@ -7,7 +7,6 @@
 
     <com.lrts.me.barryyangdemo.ClassifyFilterView
         android:id="@+id/tagsViewGroup"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

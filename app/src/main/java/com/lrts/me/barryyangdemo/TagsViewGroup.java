@@ -5,12 +5,15 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
+/***
+ *
+ *
+ * 标签显示
+ *
+ * @author barry
  *
  */
 public class TagsViewGroup extends ViewGroup {
-
-    private static final String TAG = "TagsViewGroup";
 
     public TagsViewGroup(Context context) {
         super(context);
@@ -33,38 +36,42 @@ public class TagsViewGroup extends ViewGroup {
             measureChild(children, widthMeasureSpec, heightMeasureSpec);
         }
         int allChiledWidth = 0;
-        int allChildHeight = getChildAt(0).getMeasuredHeight();
-        int firstRowWidthAll = 0;
+        int allChildHeight;
         int clomn = 0;
-
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             allChiledWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-
             if (allChiledWidth > widthSize) {
                 allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
-                firstRowWidthAll = getChildAt(0).getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
                 clomn++;
-                allChildHeight = (clomn + 1) * (getChildAt(0).getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
             }
-
-            if (clomn == 0) {
-                allChildHeight = allChildHeight + lp.topMargin + lp.bottomMargin;
-                child.layout(firstRowWidthAll + lp.leftMargin, lp.topMargin, firstRowWidthAll + lp.leftMargin + child.getMeasuredWidth(), lp.topMargin + child.getMeasuredHeight());
-                firstRowWidthAll += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-                setMeasuredDimension(widthSize, allChildHeight);
-            } else {
-                child.layout(firstRowWidthAll + lp.leftMargin, allChildHeight / (clomn + 1) * clomn + lp.topMargin, firstRowWidthAll + lp.leftMargin + child.getMeasuredWidth(), allChildHeight - lp.bottomMargin);
-                firstRowWidthAll += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-                setMeasuredDimension(widthSize, allChildHeight);
-            }
+            allChildHeight = (clomn + 1) * (getChildAt(0).getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
+            setMeasuredDimension(widthSize, allChildHeight);
         }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-
+        int childCount = getChildCount();
+        int allChiledWidth = 0;
+        int allChildHeight;
+        int firstRowWidthAll = 0;
+        int clomn = 0;
+        for (int i = 0; i < childCount; i++) {
+            View child = getChildAt(i);
+            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+            allChiledWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            if (allChiledWidth > getWidth()) {
+                allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
+                firstRowWidthAll = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
+                clomn++;
+            }
+            allChildHeight = (clomn + 1) * (getChildAt(0).getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
+            child.layout(firstRowWidthAll + lp.leftMargin, allChildHeight / (clomn + 1) * clomn + lp.topMargin, firstRowWidthAll + lp.leftMargin + child.getMeasuredWidth(), allChildHeight - lp.bottomMargin);
+            firstRowWidthAll += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            setMeasuredDimension(getWidth(), allChildHeight);
+        }
     }
 
 }
