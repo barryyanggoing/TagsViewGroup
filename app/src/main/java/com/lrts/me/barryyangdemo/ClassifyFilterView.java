@@ -32,7 +32,7 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
     private long clickTime = 0;
     private int clickDely = 300;
 
-    private int tabTopMargin = 1, tabBottomMargin = 1, tabLeftMargin = 1, tabRightMargin = 1;
+    private int tabTopMargin = 20, tabBottomMargin = 0, tabLeftMargin = 0, tabRightMargin = 0;
 
     public ClassifyFilterView(@NonNull Context context) {
         this(context, null);
@@ -59,6 +59,7 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
     }
 
     public void setData(List<Category> list) {
+        if (list == null || list.size() == 0) return;
         this.list = list;
         tagsViewGroup.removeAllViews();
         LinearLayout.LayoutParams layoutParams = getTabLayoutParams();

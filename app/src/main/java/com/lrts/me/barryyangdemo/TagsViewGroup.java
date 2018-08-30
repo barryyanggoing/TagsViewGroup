@@ -2,6 +2,7 @@ package com.lrts.me.barryyangdemo;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
  * @date:create on 2018/8/28 09:33
  */
 public class TagsViewGroup extends ViewGroup {
+
+    private static final String TAG = "TagsViewGroup";
 
     private int mViewWidth;
 
@@ -74,49 +77,45 @@ public class TagsViewGroup extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        int width = getWidth();
-        int childCount = getChildCount();
-
-        int allChiledWidth = 0;
-        int allChiledLeft = 0;
-        int allChiledRight = 0;
-        int firstTagWidth = getChildAt(0).getMeasuredWidth();
-        int firstTagHeight = getChildAt(0).getMeasuredHeight();
-
-        ArrayList<Integer> list = new ArrayList<>();
-
-        for (int i = 0; i < childCount; i++) {
-            View child = getChildAt(i);
-            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-            int childWidth = child.getMeasuredWidth();
-            allChiledWidth += childWidth;
-            allChiledLeft += lp.leftMargin;
-            allChiledRight += lp.rightMargin;
-            if (allChiledWidth + allChiledLeft + allChiledRight > width) {
-                list.add(i);
-            }
-            int allRowWidth = firstTagWidth + lp.leftMargin + lp.rightMargin;
-            int row = 1;
-            int clomn = 1;
-
-            for (int j = 0; j < list.size(); j++) {
-                Integer integer = list.get(j);
-                int measuredWidth1 = getChildAt(integer).getMeasuredWidth();
-                allRowWidth += measuredWidth1 + lp.rightMargin + lp.leftMargin;
-                if (allRowWidth > width) {
-                    clomn++;
-                    row = 1;
-                    allRowWidth = firstTagWidth + lp.leftMargin + lp.rightMargin;
-                } else {
-                    allRowWidth = allRowWidth - (measuredWidth1 + lp.rightMargin + lp.leftMargin);
-                }
-                child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth,
-                        clomn * firstTagHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin,
-                        (row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth + child.getMeasuredWidth(),
-                        clomn * firstTagHeight + (row + 1) * lp.topMargin + row * lp.bottomMargin + child.getMeasuredHeight());
-                row++;
-                allRowWidth += measuredWidth1 + lp.rightMargin + lp.leftMargin;
-            }
-        }
+//        int width = getWidth();
+//        int childCount = getChildCount();
+//
+//        int allChiledWidth = 0;
+//        int allChiledLeft = 0;
+//        int allChiledRight = 0;
+//        int firstTagWidth = getChildAt(0).getMeasuredWidth();
+//        int firstTagHeight = getChildAt(0).getMeasuredHeight();
+//
+//        int allRowWidth = firstTagWidth;
+//        int row = 1;
+//        int clomn = 1;
+//
+//        for (int i = 0; i < childCount; i++) {
+//            View child = getChildAt(i);
+//            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+//            int childWidth = child.getMeasuredWidth();
+//            allChiledWidth += childWidth;
+//            allChiledLeft += lp.leftMargin;
+//            allChiledRight += lp.rightMargin;
+//            //换行后的布局
+//            if (allChiledWidth + allChiledLeft + allChiledRight > width) {
+//                firstTagWidth += lp.rightMargin + lp.leftMargin;
+//                int measuredWidth1 = getChildAt(i).getMeasuredWidth();
+//                allRowWidth += measuredWidth1 + lp.rightMargin + lp.leftMargin;
+//                if (allRowWidth > width) {
+//                    clomn++;
+//                    row = 1;
+//                    allRowWidth = firstTagWidth + lp.leftMargin + lp.rightMargin;
+//                } else {
+//                    allRowWidth = allRowWidth - (measuredWidth1 + lp.rightMargin + lp.leftMargin);
+//                }
+//                child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth,
+//                        clomn * firstTagHeight + (clomn + 1) * lp.topMargin + clomn * lp.bottomMargin,
+//                        (row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth + child.getMeasuredWidth(),
+//                        clomn * firstTagHeight + (clomn + 1) * lp.topMargin + clomn * lp.bottomMargin + child.getMeasuredHeight());
+//                row++;
+//                allRowWidth += measuredWidth1 + lp.rightMargin + lp.leftMargin;
+//            }
+//        }
     }
 }

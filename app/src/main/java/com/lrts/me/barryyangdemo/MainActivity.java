@@ -32,22 +32,22 @@ public class MainActivity extends AppCompatActivity {
         list.add(new Category(14,"少儿综艺"));
         list.add(new Category(15,"少儿综艺"));
         list.add(new Category(16,"少儿综艺"));
-        list.add(new Category(17,"儿歌"));
-        list.add(new Category(18,"少儿综艺"));
-        list.add(new Category(19,"少儿综艺"));
-        list.add(new Category(20,"少儿综艺"));
-        list.add(new Category(21,"少儿综艺"));
-        list.add(new Category(22,"儿歌"));
-        list.add(new Category(23,"少儿综艺"));
-        list.add(new Category(24,"少儿综艺"));
-        list.add(new Category(25,"少儿综艺"));
-        list.add(new Category(26,"少儿综艺"));
-        list.add(new Category(27,"儿歌"));
-        list.add(new Category(28,"少儿综艺"));
-        list.add(new Category(29,"少儿综"));
-        list.add(new Category(30,"综艺"));
-        list.add(new Category(31,"少儿综艺"));
-        list.add(new Category(32,"少儿艺"));
+//        list.add(new Category(17,"儿歌"));
+//        list.add(new Category(18,"少儿综艺"));
+//        list.add(new Category(19,"少儿综艺"));
+//        list.add(new Category(20,"少儿综艺"));
+//        list.add(new Category(21,"少儿综艺"));
+//        list.add(new Category(22,"儿歌"));
+//        list.add(new Category(23,"少儿综艺"));
+//        list.add(new Category(24,"少儿综艺"));
+//        list.add(new Category(25,"少儿综艺"));
+//        list.add(new Category(26,"少儿综艺"));
+//        list.add(new Category(27,"儿歌"));
+//        list.add(new Category(28,"少儿综艺"));
+//        list.add(new Category(29,"少儿综"));
+//        list.add(new Category(30,"综艺"));
+//        list.add(new Category(31,"少儿综艺"));
+//        list.add(new Category(32,"少儿艺"));
         classifyFilterView.setData(list);
     }
 
