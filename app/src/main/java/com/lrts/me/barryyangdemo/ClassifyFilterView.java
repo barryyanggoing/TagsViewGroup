@@ -32,7 +32,7 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
     private long clickTime = 0;
     private int clickDely = 300;
 
-    private int tabTopMargin = 20, tabBottomMargin = 0, tabLeftMargin = 0, tabRightMargin = 0;
+    private int tabTopMargin = 0, tabBottomMargin = 0, tabLeftMargin = 0, tabRightMargin = 0;
 
     public ClassifyFilterView(@NonNull Context context) {
         this(context, null);
