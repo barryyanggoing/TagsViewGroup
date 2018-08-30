@@ -15,19 +15,9 @@ import java.util.ArrayList;
  */
 public class TagsViewGroup extends ViewGroup {
 
-    private static final String TAG = "TagsViewGroup";
-
     private int mViewWidth;
 
     private int newHeight = 0;
-
-    private int maxLine = 0;
-
-    private boolean showExtraDots;//单行时，超出行数，是否显示省略号（...）
-
-    private int otherViewWidth;
-
-    private int screenWidth;
 
     public TagsViewGroup(Context context) {
         super(context);
@@ -39,19 +29,6 @@ public class TagsViewGroup extends ViewGroup {
 
     public TagsViewGroup(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-    }
-
-    public void setMaxLine(int pMaxLine) {
-        this.maxLine = pMaxLine;
-    }
-
-    public void setShowExtraDots(boolean showExtraDots) {
-        this.showExtraDots = showExtraDots;
-    }
-
-    public void setExtraData(int otherViewWidth, int screenWidth) {
-        this.otherViewWidth = otherViewWidth;
-        this.screenWidth = screenWidth;
     }
 
     @Override
@@ -79,24 +56,15 @@ public class TagsViewGroup extends ViewGroup {
                 leftMargin = layoutParams.leftMargin;
                 rightMargin = layoutParams.rightMargin;
             }
+
             int width = child.getMeasuredWidth();
             height = child.getMeasuredHeight();
-
-            mViewWidth = showExtraDots ? otherViewWidth == 0 ? mViewWidth : screenWidth - otherViewWidth : mViewWidth;
-
             if (viewWidth + width + leftMargin + rightMargin > mViewWidth) {
-                if (showExtraDots && mViewWidth > 0) {
-                    removeViews(i, count - i);
-                    break;
-                } else {
-                    row++;
-                    if (maxLine != 0 && row == maxLine) {
-                        break;
-                    }
-                    viewWidth = 0;
-                    newHeight += height + topMargin;
-                }
+                row++;
+                viewWidth = 0;
+                newHeight += height + topMargin;
             }
+
             child.layout(viewWidth + leftMargin, (height * row) + (topMargin * (row + 1)), viewWidth + width
                     + rightMargin, (height * (row + 1)) + (bottomMargin * (row + 1)));
             viewWidth += width + leftMargin + rightMargin;
@@ -139,7 +107,7 @@ public class TagsViewGroup extends ViewGroup {
                     clomn++;
                     row = 1;
                     allRowWidth = firstTagWidth + lp.leftMargin + lp.rightMargin;
-                }else{
+                } else {
                     allRowWidth = allRowWidth - (measuredWidth1 + lp.rightMargin + lp.leftMargin);
                 }
                 child.layout((row + 1) * lp.leftMargin + row * lp.rightMargin + allRowWidth,
