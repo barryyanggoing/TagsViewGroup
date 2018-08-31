@@ -113,9 +113,7 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
             Category category = list.get(i);
             if (tag == category.getId() && selectedIndex != i) {
                 selectedIndex = i;
-
                 animText.setText(category.getName());
-
                 animText.setBackgroundResource(R.drawable.shape_classify_filter_tag_bg_pressed);
                 startAnim((TextView) tagsViewGroup.getChildAt(i), tagsViewGroup.getChildAt(i).getLeft(), tagsViewGroup.getChildAt(i).getTop());
             } else if (tag == category.getId() && selectedIndex == i) {
