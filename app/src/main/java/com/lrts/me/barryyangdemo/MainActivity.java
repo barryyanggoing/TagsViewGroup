@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new Category(12,"语文语文"));
         list.add(new Category(13,"电影教"));
         list.add(new Category(14,"综艺综艺"));
-        list.add(new Category(15,"综艺"));
+        list.add(new Category(15,"综综艺"));
         list.add(new Category(16,"综艺综艺"));
         list.add(new Category(17,"儿歌"));
         list.add(new Category(18,"综艺"));

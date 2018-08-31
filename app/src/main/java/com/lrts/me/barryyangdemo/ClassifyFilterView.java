@@ -32,7 +32,7 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
     private long clickTime = 0;
     private int clickDely = 300;
 
-    private int tabTopMargin = 10, tabBottomMargin = 10, tabLeftMargin = 10, tabRightMargin = 10;
+    private int tabTopMargin, tabBottomMargin, tabLeftMargin, tabRightMargin;
 
     public ClassifyFilterView(@NonNull Context context) {
         this(context, null);
@@ -113,7 +113,9 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
             Category category = list.get(i);
             if (tag == category.getId() && selectedIndex != i) {
                 selectedIndex = i;
+
                 animText.setText(category.getName());
+
                 animText.setBackgroundResource(R.drawable.shape_classify_filter_tag_bg_pressed);
                 startAnim((TextView) tagsViewGroup.getChildAt(i), tagsViewGroup.getChildAt(i).getLeft(), tagsViewGroup.getChildAt(i).getTop());
             } else if (tag == category.getId() && selectedIndex == i) {

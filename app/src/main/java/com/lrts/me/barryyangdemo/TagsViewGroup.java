@@ -2,12 +2,10 @@ package com.lrts.me.barryyangdemo;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 /***
- *
  *
  * 标签显示
  *
@@ -15,8 +13,6 @@ import android.view.ViewGroup;
  *
  */
 public class TagsViewGroup extends ViewGroup {
-
-    private static final String TAG = "TagsViewGroup";
 
     public TagsViewGroup(Context context) {
         super(context);
@@ -40,17 +36,17 @@ public class TagsViewGroup extends ViewGroup {
         }
         int allChiledWidth = 0;
         int allChildHeight;
-        int clomn = 0;
+        int row = 0;
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             allChiledWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-            // TODO: 2018/8/30  为什么没有加上第一个tag
             if (allChiledWidth > widthSize) {
-                allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
-                clomn++;
+                allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin +
+                        getChildAt(i).getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+                row++;
             }
-            allChildHeight = (clomn + 1) * (getChildAt(0).getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
+            allChildHeight = (row + 1) * (getChildAt(0).getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
             setMeasuredDimension(widthSize, allChildHeight);
         }
     }
@@ -60,21 +56,21 @@ public class TagsViewGroup extends ViewGroup {
         int childCount = getChildCount();
         int allChiledWidth = 0;
         int allChildHeight;
-        int firstRowWidthAll = 0;
-        int clomn = 0;
+        int everyRowWidthAll = 0;
+        int row = 0;
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             allChiledWidth += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
-            // TODO: 2018/8/30  为什么没有加上第一个tag   这里第10个tab的时候才进入到这个判断中，也就是说少加了第10个这个tab的宽度
             if (allChiledWidth > getWidth()) {
-                allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
-                firstRowWidthAll = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
-                clomn++;
+                allChiledWidth = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin +
+                        getChildAt(i).getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+                everyRowWidthAll = getChildAt(0).getMeasuredWidth() + lp.rightMargin + lp.leftMargin;
+                row++;
             }
-            allChildHeight = (clomn + 1) * (getChildAt(0).getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-            child.layout(firstRowWidthAll + lp.leftMargin, allChildHeight / (clomn + 1) * clomn + lp.topMargin, firstRowWidthAll + lp.leftMargin + child.getMeasuredWidth(), allChildHeight - lp.bottomMargin);
-            firstRowWidthAll += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+            allChildHeight = (row + 1) * (getChildAt(0).getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
+            child.layout(everyRowWidthAll + lp.leftMargin, allChildHeight / (row + 1) * row + lp.topMargin, everyRowWidthAll + lp.leftMargin + child.getMeasuredWidth(), allChildHeight - lp.bottomMargin);
+            everyRowWidthAll += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             setMeasuredDimension(getWidth(), allChildHeight);
         }
     }
