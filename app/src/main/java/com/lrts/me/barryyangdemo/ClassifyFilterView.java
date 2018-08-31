@@ -30,9 +30,11 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
 
     private int startMarginLeft, startMarginTop, selectedIndex;
     private long clickTime = 0;
-    private int clickDely = 300;
+    private int clickDely = 350;
 
     private int tabTopMargin, tabBottomMargin, tabLeftMargin, tabRightMargin;
+
+    private OnTagClickListener onTagClickListener;
 
     public ClassifyFilterView(@NonNull Context context) {
         this(context, null);
@@ -106,22 +108,33 @@ public class ClassifyFilterView extends FrameLayout implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        int tag = (int) v.getTag();
+        int id = (int) v.getTag();
         if (System.currentTimeMillis() - clickTime < clickDely) return;
         clickTime = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
             Category category = list.get(i);
-            if (tag == category.getId() && selectedIndex != i) {
+            if (id == category.getId() && selectedIndex != i) {
                 selectedIndex = i;
                 animText.setText(category.getName());
                 animText.setBackgroundResource(R.drawable.shape_classify_filter_tag_bg_pressed);
                 startAnim((TextView) tagsViewGroup.getChildAt(i), tagsViewGroup.getChildAt(i).getLeft(), tagsViewGroup.getChildAt(i).getTop());
-            } else if (tag == category.getId() && selectedIndex == i) {
+            } else if (id == category.getId() && selectedIndex == i) {
                 tagsViewGroup.getChildAt(i).setSelected(true);
             } else {
                 tagsViewGroup.getChildAt(i).setSelected(false);
             }
         }
+        if (onTagClickListener != null && list != null) {
+            onTagClickListener.tagClick(list.get(selectedIndex));
+        }
+    }
+
+    public void setOnTagClickListener(OnTagClickListener onTagClickListener) {
+        this.onTagClickListener = onTagClickListener;
+    }
+
+    interface OnTagClickListener {
+        void tagClick(Category category);
     }
 
     private void startAnim(final TextView textViewSelected, final int endMarginLeft, final int endMarginTop) {

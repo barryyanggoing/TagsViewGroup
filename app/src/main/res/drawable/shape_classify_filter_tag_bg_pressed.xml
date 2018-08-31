@@ -6,9 +6,9 @@
     <corners android:radius="100dp" />
 
     <padding
-        android:bottom="5dp"
+        android:bottom="8dp"
         android:left="15dp"
         android:right="15dp"
-        android:top="5dp" />
+        android:top="8dp" />
 
 </shape>
