@@ -16,14 +16,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        ListView listView = findViewById(R.id.listview);
+        final ListView listView = findViewById(R.id.listview);
+        final MyAdapter myAdapter = new MyAdapter(setData());
         findViewById(R.id.iv_scale).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        listView.setAdapter(new MyAdapter(setData()));
+        listView.setAdapter(myAdapter);
     }
 
     private List<TagsGroup> setData() {
